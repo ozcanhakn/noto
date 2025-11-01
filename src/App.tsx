@@ -1,14 +1,23 @@
 import { Authenticated, Unauthenticated, useQuery } from "convex/react";
+import { useState } from "react";
+import { Toaster } from "sonner";
 import { api } from "../convex/_generated/api";
+import { Id } from "../convex/_generated/dataModel";
+import { DocumentEditor } from "./components/DocumentEditor";
+import { LandingPage } from "./components/LandingPage";
+import { Sidebar } from "./components/Sidebar";
 import { SignInForm } from "./SignInForm";
 import { SignOutButton } from "./SignOutButton";
-import { Toaster } from "sonner";
-import { DocumentEditor } from "./components/DocumentEditor";
-import { Sidebar } from "./components/Sidebar";
-import { useState } from "react";
-import { Id } from "../convex/_generated/dataModel";
 
 export default function App() {
+  const [showLanding, setShowLanding] = useState(true);
+
+  if (showLanding) {
+    return (
+      <LandingPage onSignInClick={() => setShowLanding(false)} />
+    );
+  }
+
   return (
     <div className="min-h-screen flex bg-gray-50">
       <Unauthenticated>
@@ -19,6 +28,14 @@ export default function App() {
               <p className="text-gray-600">Sign in to start creating and editing documents</p>
             </div>
             <SignInForm />
+            <div className="mt-4 text-center">
+              <button
+                onClick={() => setShowLanding(true)}
+                className="text-sm text-blue-600 hover:text-blue-800"
+              >
+                Back to home
+              </button>
+            </div>
           </div>
         </div>
       </Unauthenticated>

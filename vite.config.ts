@@ -6,23 +6,19 @@ import path from "path";
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
-    // The code below enables dev tools like taking screenshots of your site
-    // while it is being developed on chef.convex.dev.
-    // Feel free to remove this code if you're no longer developing your app with Chef.
     mode === "development"
       ? {
-          name: "inject-chef-dev",
+          name: "inject-noto-dev",
           transform(code: string, id: string) {
             if (id.includes("main.tsx")) {
               return {
                 code: `${code}
 
-/* Added by Vite plugin inject-chef-dev */
 window.addEventListener('message', async (message) => {
   if (message.source !== window.parent) return;
-  if (message.data.type !== 'chefPreviewRequest') return;
+  if (message.data.type !== 'notoPreviewRequest') return;
 
-  const worker = await import('https://chef.convex.dev/scripts/worker.bundled.mjs');
+  const worker = await import('https://noto.convex.dev/scripts/worker.bundled.mjs');
   await worker.respondToMessage(message);
 });
             `,
@@ -33,7 +29,6 @@ window.addEventListener('message', async (message) => {
           },
         }
       : null,
-    // End of code for taking screenshots on chef.convex.dev.
   ].filter(Boolean),
   resolve: {
     alias: {
