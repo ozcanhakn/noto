@@ -2,7 +2,6 @@
 
 A real-time collaborative document editing application built with React, Convex, and BlockNote.
 
-![Project Screenshot](./public/screenshot.png) <!-- Update with actual screenshot if available -->
 
 ## Features
 
@@ -113,4 +112,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Convex](https://convex.dev) - Backend platform for real-time applications
 - [BlockNote](https://blocknotejs.org) - Block-based rich text editor
 - [React](https://reactjs.org) - JavaScript library for building user interfaces
+
 - [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
